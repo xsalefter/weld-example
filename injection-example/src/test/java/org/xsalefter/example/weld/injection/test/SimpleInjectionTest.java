@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xsalefter.example.weld.injection.SimpleInjection;
+import org.xsalefter.example.weld.ref.domain.Address;
 import org.xsalefter.example.weld.ref.domain.Person;
 
 /**
@@ -27,7 +28,11 @@ public class SimpleInjectionTest {
 	@Deployment
 	public static JavaArchive createJAR() {
 		return ShrinkWrap.create(JavaArchive.class, "injection-example.jar").
-				addClass(SimpleInjection.class).
+				addClasses(
+						SimpleInjection.class,
+						Person.class,
+						Address.class
+						).
 				addAsManifestResource(
 						EmptyAsset.INSTANCE, 
 						ArchivePaths.create("beans.xml"));
